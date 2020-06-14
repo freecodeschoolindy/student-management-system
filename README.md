@@ -138,3 +138,5 @@
   * Certificates/Badges
   
 * Area where volunteers can view their own information and update their hours
+
+* Set type of lecture (add type field to Lecture model)

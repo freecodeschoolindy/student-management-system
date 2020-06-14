@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.certificates',
     'apps.waitlist',
+    'apps.lectures',
 ]
 
 MIDDLEWARE = [
