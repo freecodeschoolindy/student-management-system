@@ -73,7 +73,26 @@
 
 ## API
 
-* coming soon...
+**Prefix:** /api/v1
+
+**/students**
+
+* get (temporary, only for testing)
+* post
+
+**/students/:id**
+
+* get
+* patch
+* delete
+
+**/students/:id/certificates**
+
+* get
+
+**/certificates**
+
+* get
 
 ## Requirements
 
