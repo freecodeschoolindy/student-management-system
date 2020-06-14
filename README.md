@@ -11,9 +11,9 @@
 * User
   * email
   * password
-  * groups: student, admin, or volunteer
+  * groups: student, admin, or volunteer (can only belong to one)
 
-* Profile
+* StudentProfile
   * first_name
   * last_name
   * preferred_name
@@ -21,19 +21,35 @@
   * github_username
   * codepen_username
   * fcc_profile_url
+  * current_level
   * phone
   * timezone
 
 * Volunteer
+  * first_name
+  * last_name
+  * email
   * hours_available
   
-* Attendance
+* VolunteerHours
+  * volunteer_id
+  * day: CharField with choices -> mon, tue, wed, thu, fri, sat, sun
+  * begin_hour: models.PositiveSmallIntegerField(validators=[MaxValueValidator(24)])
+  * end_hour: models.PositiveSmallIntegerField(validators=[MaxValueValidator(24)])
+  
+* Lecture
   * date
+  * title
+  * description
+  * slides_url
+  
+* Attendance
+  * lecture_id
   * student_id
   
 * Project (labs)
-  * name
-  * details
+  * title
+  * description
   * url
 
 * StudentSubmission
@@ -94,3 +110,5 @@
   * GitHub Username
   * Codepen Username
   * Certificates/Badges
+  
+* Area where volunteers can view their own information and update their hours
