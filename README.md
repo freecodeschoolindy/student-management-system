@@ -86,7 +86,9 @@
 * StudentSubmission
   * student_id
   * project_id
-  * url
+  * url: CharField
+  * feedback: TextField (for comments from reviewers)
+  * approved: BooleanField
   
 * StudentCertificate 
   * student_id
