@@ -8,7 +8,7 @@ class LectureSerializer(serializers.ModelSerializer):
         model = Lecture
         fields = ('id', 'title', 'description',
                   'lecturer_name', 'date', 'duration',
-                  'slides_url', 'level', 'is_required')
+                  'slides_url', 'level', 'required')
 
 
 class LectureViewSet(viewsets.ModelViewSet):

@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='lecture',
-            name='is_required',
+            name='required',
             field=models.BooleanField(default=True),
         ),
     ]

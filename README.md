@@ -76,7 +76,7 @@
   * slides_url
   * duration
   * level
-  * is_required: BooleanField
+  * required: BooleanField
   
 * Attendance
   * lecture_id
@@ -87,7 +87,7 @@
   * description
   * url
   * level
-  * is_required
+  * required
 
 * StudentSubmission
   * student_id
