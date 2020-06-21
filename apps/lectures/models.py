@@ -11,4 +11,6 @@ class Lecture(Timestamps, models.Model):
     date = models.DateField()
     duration = models.IntegerField(help_text='Enter number of hours')
     slides_url = models.CharField(max_length=255)
+    level = models.IntegerField(choices=((1, 'Level 1'), (2, 'Level 2')),
+                                default=1)
     is_required = models.BooleanField(default=True)
