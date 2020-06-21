@@ -72,7 +72,11 @@
   * date
   * title
   * description
+  * lecturer_name
   * slides_url
+  * duration
+  * level
+  * is_required: BooleanField
   
 * Attendance
   * lecture_id
@@ -82,6 +86,8 @@
   * title
   * description
   * url
+  * level
+  * is_required
 
 * StudentSubmission
   * student_id
