@@ -121,7 +121,16 @@
 
 * get
 
+**/students/:id/assignments**
+
+* get
+* post
+
 **/certificates**
+
+* get
+
+**/projects**
 
 * get
 
