@@ -7,7 +7,7 @@ class StudentSubmissionAdmin(admin.ModelAdmin):
     list_display = ('get_student', 'get_project',
                     'approved')
     # list_filter = ('project__title',)
-    # search_fields = ('student__name',)
+    search_fields = ('student__userprofile__first_name',)
 
     def get_project(self, obj):
         return obj.project.title
@@ -15,9 +15,9 @@ class StudentSubmissionAdmin(admin.ModelAdmin):
     get_project.short_description = 'Project Title'
 
     def get_student(self, obj):
-        return obj.student.email
+        return obj.student.userprofile.first_name
     get_student.admin_order_field = 'student'
-    get_student.short_description = 'Student\'s Email'
+    get_student.short_description = 'Student\'s Name'
 
 
 admin.site.register(StudentSubmission, StudentSubmissionAdmin)

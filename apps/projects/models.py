@@ -10,3 +10,6 @@ class Project(AbstractTableMeta, models.Model):
     level = models.IntegerField(choices=((1, 'Level 1'), (2, 'Level 2')),
                                 default=1)
     required = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title

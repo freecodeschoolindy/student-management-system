@@ -2,6 +2,7 @@ from rest_framework import serializers, viewsets
 from django.contrib.auth import get_user_model
 
 from apps.submissions.models import StudentSubmission
+from apps.projects.models import Project
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,9 +20,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
+    project = serializers.PrimaryKeyRelatedField(
+                queryset=Project.objects.all())
+    student = serializers.PrimaryKeyRelatedField(
+                queryset=get_user_model().objects.all())
+
     class Meta:
         model = StudentSubmission
-        fields = ('id', 'project_id', 'url', 'feedback', 'approved')
+        fields = ('id', 'project', 'student',
+                  'url', 'feedback', 'approved')
+        read_only_fields = ['feedback', 'approved']
 
 
 class UserViewSet(viewsets.ModelViewSet):
