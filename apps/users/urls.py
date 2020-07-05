@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework_nested import routers
-from .views import UserViewSet, AssignmentViewSet
+
+from .views import UserViewSet, AssignmentViewSet, CustomAuthToken
 
 router = routers.SimpleRouter()
 router.register(r'', UserViewSet)
@@ -11,4 +12,5 @@ assignments_router.register(r'assignments', AssignmentViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path(r'', include(assignments_router.urls)),
+    path('login', CustomAuthToken.as_view()),
 ]
