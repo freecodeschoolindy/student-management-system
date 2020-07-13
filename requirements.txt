@@ -1,5 +1,6 @@
 asgiref==3.2.7
 Django==3.0.7
+django-cors-headers==3.4.0
 djangorestframework==3.11.0
 drf-nested-routers==0.91
 flake8==3.8.3
