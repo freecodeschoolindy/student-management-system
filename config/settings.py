@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_nested',
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
     'corsheaders',
     'apps.utils',
     'apps.users',
@@ -120,11 +123,18 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
+        'social_core.backends.github.GithubOAuth2',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     )
 }
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_CLIENT_ID']
+SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_CLIENT_SECRET']
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
