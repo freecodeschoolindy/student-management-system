@@ -19,4 +19,5 @@ urlpatterns = [
     path(r'', include(assignments_router.urls)),
     path(r'', include(profile_router.urls)),
     path('login', CustomAuthToken.as_view()),
+    # path('authorize', CustomAuthToken.as_view()),
 ]

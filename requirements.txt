@@ -7,8 +7,6 @@ defusedxml==0.7.0rc1
 Django==3.0.7
 django-braces==1.14.0
 django-cors-headers==3.4.0
-django-oauth-toolkit==1.3.2
-django-rest-framework-social-oauth2==1.1.0
 djangorestframework==3.11.0
 drf-nested-routers==0.91
 flake8==3.8.3
@@ -27,8 +25,6 @@ pytz==2020.1
 requests==2.24.0
 requests-oauthlib==1.3.0
 six==1.15.0
-social-auth-app-django==4.0.0
-social-auth-core==3.3.3
 sqlparse==0.3.1
 urllib3==1.25.9
 zipp==3.1.0
