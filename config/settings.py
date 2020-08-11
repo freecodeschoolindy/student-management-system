@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'apps.utils',
     'apps.users',
+    'apps.oauth',
     'apps.certificates',
     'apps.waitlist',
     'apps.lectures',
@@ -79,6 +80,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -123,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        'social_core.backends.github.GithubOAuth2',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
@@ -132,9 +134,16 @@ REST_FRAMEWORK = {
     )
 }
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 SOCIAL_AUTH_GITHUB_KEY = os.environ['GITHUB_CLIENT_ID']
 SOCIAL_AUTH_GITHUB_SECRET = os.environ['GITHUB_CLIENT_SECRET']
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+DRFSO2_PROPRIETARY_BACKEND_NAME = 'Github'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
