@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers, viewsets
+from rest_framework.views import APIView
 from rest_framework.decorators import permission_classes
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -56,12 +57,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 @permission_classes([IsAuthenticated])
-class UserProfileViewSet(viewsets.ViewSet):
-    # queryset = UserProfile.objects.all()
-    # serializer_class = UserProfileSerializer
-    def retrieve(self, request, pk=None, *args, **kwargs):
-        queryset = UserProfile.objects.all()
-        profile = get_object_or_404(queryset, user=pk)
+class UserProfileView(APIView):
+    def get(self, request, pk):
+        profile = UserProfile.objects.get(user=request.user)
         serializer = UserProfileSerializer(profile)
         return Response(serializer.data)
 
