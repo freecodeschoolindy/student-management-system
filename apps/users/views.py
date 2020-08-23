@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from rest_framework import serializers, viewsets
 from rest_framework.decorators import permission_classes
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -32,7 +33,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'user')
+        fields = ('__all__')
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
@@ -54,15 +55,23 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class UserProfileViewSet(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
+@permission_classes([IsAuthenticated])
+class UserProfileViewSet(viewsets.ViewSet):
+    # queryset = UserProfile.objects.all()
+    # serializer_class = UserProfileSerializer
+    def retrieve(self, request, pk=None, *args, **kwargs):
+        queryset = UserProfile.objects.all()
+        profile = get_object_or_404(queryset, user=pk)
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data)
 
 
 @permission_classes([IsAuthenticated])
-class AssignmentViewSet(viewsets.ModelViewSet):
-    queryset = StudentSubmission.objects.all()
-    serializer_class = AssignmentSerializer
+class SubmissionsViewSet(viewsets.ViewSet):
+    def list(self, request, *args, **kwargs):
+        queryset = StudentSubmission.objects.filter(student=request.user.id)
+        serializer = AssignmentSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class CustomAuthToken(ObtainAuthToken):

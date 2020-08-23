@@ -168,3 +168,4 @@ MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+APPEND_SLASH=False
