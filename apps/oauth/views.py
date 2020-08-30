@@ -7,10 +7,12 @@ from social_django.utils import load_strategy, load_backend
 from social_core.backends.oauth import BaseOAuth2
 from social_core.exceptions import MissingBackend, AuthTokenError, AuthForbidden
 
+
 class GithubSerializer(serializers.Serializer):
     provider = serializers.CharField(max_length=255, required=True)
     access_token = serializers.CharField(max_length=4096, required=True, trim_whitespace=True)
- 
+
+
 class GithubLoginView(generics.GenericAPIView):
     serializer_class = GithubSerializer
     permission_classes = [permissions.AllowAny]

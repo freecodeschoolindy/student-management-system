@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework_social_oauth2',
     'corsheaders',
+    'debug_toolbar',
     'apps.utils',
     'apps.users',
     'apps.oauth',
@@ -52,9 +53,11 @@ INSTALLED_APPS = [
     'apps.lectures',
     'apps.projects',
     'apps.submissions',
+    'apps.volunteers',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -158,7 +161,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -169,3 +171,7 @@ MEDIA_URL = '/media/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 APPEND_SLASH=False
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

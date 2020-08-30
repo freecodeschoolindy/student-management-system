@@ -69,10 +69,9 @@
   * hours_available
   
 * VolunteerHours
-  * volunteer_id
-  * day: CharField with choices -> mon, tue, wed, thu, fri, sat, sun
-  * begin_hour: models.PositiveSmallIntegerField(validators=[MaxValueValidator(24)])
-  * end_hour: models.PositiveSmallIntegerField(validators=[MaxValueValidator(24)])
+  * volunteer: FK
+  * start: DateTime
+  * end: DateTime
   
 * Lecture
   * date
@@ -161,5 +160,6 @@
   * Certificates/Badges
   
 * Area where volunteers can view their own information and update their hours
+  * Create an hours available table for volunteers so they can denote exact hours
 
 * Set type of lecture (add type field to Lecture model)
