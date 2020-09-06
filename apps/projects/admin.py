@@ -4,7 +4,7 @@ from .models import Project
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'level', 'required')
+    list_display = ('id', 'title', 'level', 'required')
     list_filter = ('level',)
 
 
