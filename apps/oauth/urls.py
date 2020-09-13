@@ -1,7 +1,7 @@
 from django.urls import path, include
 
-from .views import GithubLoginView
+from .views import GithubCodeView
 
 urlpatterns = [
-    path('', GithubLoginView.as_view())
+    path('', GithubCodeView.as_view())
 ]
