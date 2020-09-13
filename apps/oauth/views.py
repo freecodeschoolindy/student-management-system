@@ -13,8 +13,8 @@ from social_core.exceptions import MissingBackend, AuthTokenError, AuthForbidden
 
 class GithubCodeSerializer(serializers.Serializer):
     code = serializers.CharField(max_length=255, required=True)
-    clientId = serializers.CharField(max_length=255, required=True)
-    redirectUri = serializers.CharField(max_length=255, required=True)
+    clientId = serializers.CharField(max_length=255)
+    redirectUri = serializers.CharField(max_length=255)
 
 
 class GithubCodeView(generics.GenericAPIView):
@@ -23,7 +23,6 @@ class GithubCodeView(generics.GenericAPIView):
 
     def post(self, request):
         ACCESS_URL = 'https://github.com/login/oauth/access_token'
-        print(request.data)
 
         payload = {
             'code': request.data['code'],
@@ -35,7 +34,7 @@ class GithubCodeView(generics.GenericAPIView):
         }
         res = requests.post(ACCESS_URL, payload, headers=headers)
         print(res.text)
-        return Response('Success', status=200)
+        return Response(res.text, status=200)
 
 
 class GithubSerializer(serializers.Serializer):
