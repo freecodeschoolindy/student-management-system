@@ -39,6 +39,25 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('__all__')
 
+    def create(self, validated_data, pk):
+        # TODO pk field?
+        # TODO fix this
+        is_student = validated_data.pop('is_student')
+        profile = UserProfile.objects.create(validated_data)
+        user = get_user_model().objects.get()
+        profile.user = user
+        user.save()
+        return user
+
+
+class CreateUserSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(
+                queryset=get_user_model().objects.all())
+
+    class Meta:
+        model = UserProfile
+        fields = ('__all__')
+
 
 class AssignmentSerializer(serializers.ModelSerializer):
     project = serializers.PrimaryKeyRelatedField(
@@ -57,7 +76,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
         read_only_fields = ['feedback', 'approved']
 
 
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 class UserViewSet(viewsets.ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
@@ -66,12 +85,21 @@ class UserViewSet(viewsets.ModelViewSet):
         raise PermissionDenied()
 
 
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 class UserProfileView(APIView):
     def get(self, request, pk):
-        profile = UserProfile.objects.get(user=request.user)
+        profile = UserProfile.objects.get(user=pk)
         serializer = UserProfileSerializer(profile)
         return Response(serializer.data)
+
+    def post(self, request, pk):
+        profile = UserProfile.objects.create(
+            **request.POST,
+            user= 
+        )
+        profile.user = get_user_model().objects.get(pk=pk)
+        profile.save()
+        return Response('Success')
 
 
 @permission_classes([IsAuthenticated])
