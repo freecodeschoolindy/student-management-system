@@ -39,16 +39,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('__all__')
 
-    def create(self, validated_data, pk):
-        # TODO pk field?
-        # TODO fix this
-        is_student = validated_data.pop('is_student')
-        profile = UserProfile.objects.create(validated_data)
-        user = get_user_model().objects.get()
-        profile.user = user
-        user.save()
-        return user
-
 
 class CreateUserSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(
@@ -93,12 +83,13 @@ class UserProfileView(APIView):
         return Response(serializer.data)
 
     def post(self, request, pk):
-        profile = UserProfile.objects.create(
-            **request.POST,
-            user= 
+        # name, bio, github_username, avatar, current_level
+        profile = UserProfile(
+            **request.data
         )
         profile.user = get_user_model().objects.get(pk=pk)
         profile.save()
+        
         return Response('Success')
 
 
