@@ -119,22 +119,47 @@
 
 **Prefix:** /api/v1
 
-**/students**
+**/users**
 
 * get (temporary, only for testing)
 * post
 
-**/students/:id**
+**/users/:id**
 
 * get
 * patch
 * delete
 
-**/students/:id/certificates**
+**/users/:id/profile**
 
 * get
 
-**/students/:id/assignments**
+*example response:*
+
+```json
+{
+  "user": 6,
+  "name": "Daneel Olivaw",
+  "bio": "hello there...",
+  "preferred_name": null,
+  "avatar_url": "http://example.com",
+  "discord_name": null,
+  "github_username": "rdaneel",
+  "codepen_username": null,
+  "fcc_profile_url": null,
+  "current_level": 1,
+  "phone": null,
+  "timezone": null
+}
+```
+
+* post
+
+**/users/:id/certificates**
+
+* get
+
+**/users/:id/assignments**
 
 * get
 * post

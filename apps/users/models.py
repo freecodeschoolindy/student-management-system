@@ -63,23 +63,23 @@ class UserProfile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    preferred_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='profile-images')
-    discord_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    bio = models.TextField(default='', blank=True)
+    preferred_name = models.CharField(max_length=100, null=True)
+    avatar_url = models.CharField(max_length=255, null=True)
+    discord_name = models.CharField(max_length=100, null=True)
     github_username = models.CharField(max_length=100)
-    codepen_username = models.CharField(max_length=100)
-    fcc_profile_url = models.CharField(max_length=255)
+    codepen_username = models.CharField(max_length=100, null=True)
+    fcc_profile_url = models.CharField(max_length=255, null=True)
 
     LEVELS = (
         (1, 'Level One'),
         (2, 'Level Two'),
     )
-    current_level = models.IntegerField(choices=LEVELS)
+    current_level = models.IntegerField(choices=LEVELS, default=1)
 
-    phone = models.CharField(max_length=50)
-    timezone = models.CharField(max_length=50)
+    phone = models.CharField(max_length=50, null=True)
+    timezone = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
