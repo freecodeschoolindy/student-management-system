@@ -13,7 +13,7 @@ class LectureSerializer(serializers.ModelSerializer):
                   'slides_url', 'level', 'required')
 
 
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 class LectureViewSet(viewsets.ModelViewSet):
     queryset = Lecture.objects.all()
     serializer_class = LectureSerializer

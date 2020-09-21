@@ -9,11 +9,11 @@ class LectureAdmin(admin.ModelAdmin):
 
 class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('lecture', 'get_student', 'get_date')
-    search_fields = ('student__userprofile__first_name',
+    search_fields = ('student__userprofile__name',
                      'lecture__title')
 
     def get_student(self, obj):
-        return obj.student.userprofile.first_name
+        return obj.student.userprofile.name
     get_student.admin_order_field = 'student'
     get_student.short_description = 'Student\'s Name'
 
@@ -21,9 +21,6 @@ class AttendanceAdmin(admin.ModelAdmin):
         return obj.lecture.date
     get_date.admin_order_field = 'lecture'
     get_date.short_description = 'Date'
-    # list_display = ('lecture__title', 'student__userprofile__first_name',
-    #                 'lecture__date')
-    # search_fields = ('title', 'lecturer_name')
 
 
 admin.site.register(Lecture, LectureAdmin)
