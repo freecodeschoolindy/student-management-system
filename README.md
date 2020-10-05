@@ -19,6 +19,15 @@
 * [API](#api)
 * [Roadmap](#roadmap)
 
+## Running Locally
+
+1. Must have Python 3 & Postgres installed
+1. Clone the repo and cd into repo
+1. Create a virtual environment: `python -m venv venv`
+1. Go into your virtual environment: `source venv/bin/activate`
+1. Install dependencies: `pip install -r requirements.txt`
+1. Run the app: `python manage.py runserver`
+
 ## Requirements
 
 * Students and Organizers/Admin accounts login using GitHub OAUTH
