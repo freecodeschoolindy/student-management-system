@@ -8,7 +8,7 @@ discord-webhook==0.9.0
 Django==3.0.7
 django-braces==1.14.0
 django-cors-headers==3.4.0
-django-debug-toolbar==2.2
+django-debug-toolbar==2.2.1
 django-oauth-toolkit==1.3.2
 django-rest-framework-social-oauth2==1.1.0
 djangorestframework==3.11.0
