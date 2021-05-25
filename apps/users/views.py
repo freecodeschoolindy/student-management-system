@@ -18,10 +18,17 @@ from .permissions import ObjectPermission
 
 
 class UserSerializer(serializers.ModelSerializer):
+     password = serializers.CharField(
+        write_only=True,
+        required=True,
+        min_length = 8, 
+        help_text='Leave empty if no change needed',
+        style={'input_type': 'password', 'placeholder': 'Password'}
+    )
     class Meta:
         model = get_user_model()
         fields = ('id', 'email', 'password', 'is_student')
-        extra_kwargs = {'password': {'write_only': True, 'min_length': 8}}
+#         extra_kwargs = {'password': {'write_only': True, 'min_length': 8}}
 
     def create(self, validated_data):
         is_student = validated_data.pop('is_student')
