@@ -18,7 +18,7 @@ idna==2.10
 importlib-metadata==1.6.1
 mccabe==0.6.1
 oauthlib==3.1.0
-Pillow==7.1.2
+Pillow==8.2.0
 psycopg2==2.8.5
 pycodestyle==2.6.0
 pycparser==2.20
