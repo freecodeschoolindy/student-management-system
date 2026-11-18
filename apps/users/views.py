@@ -77,13 +77,19 @@ class UserViewSet(viewsets.ModelViewSet):
 
 # @permission_classes([IsAuthenticated])
 class UserProfileView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, pk):
+        if request.user.pk != pk:
+            raise PermissionDenied()
         profile = UserProfile.objects.get(user=pk)
         serializer = UserProfileSerializer(profile)
         return Response(serializer.data)
 
     def post(self, request, pk):
         # name, bio, github_username, avatar, current_level
+        if request.user.pk != pk:
+            raise PermissionDenied()
         profile = UserProfile(
             **request.data
         )
